@@ -99,59 +99,6 @@ To work on the kit against an app, install it from disk (`npm install ../ui-kit`
 `resolve: { dedupe: ['react', 'react-dom', '@tauri-apps/api'] }` to the app's Vite config, so the linked kit and the
 app share one React. Rebuild the kit (`npm run build`) after each change.
 
-## Extraction from Zap
-
-`docs/inventory.md` maps every rule of Zap's stylesheet to its destination and phase. Every phase must leave Zap
-unchanged, which two checks prove against a baseline: a build of the **same Zap commit without the kit** (the kit
-parts reverted), served on another port.
-
-```sh
-# Baseline (pre-kit build of the current Zap commit) on :1432, Zap with the kit on :1431.
-CDP_PORT=9351 node scripts/snapshot.mjs .snapshots/base http://localhost:1432
-CDP_PORT=9352 node scripts/snapshot.mjs .snapshots/after http://localhost:1431
-node scripts/compare.mjs .snapshots/base .snapshots/after
-
-CDP_PORT=9353 node scripts/interactions.mjs .snapshots/i-base.json http://localhost:1432
-CDP_PORT=9354 node scripts/interactions.mjs .snapshots/i-after.json http://localhost:1431
-node scripts/compare-interactions.mjs .snapshots/i-base.json .snapshots/i-after.json
-```
-
-- `snapshot.mjs` drives Zap's fixtures (`tests/connections.html`, `tests/editor.html`) in headless Chromium through
-  52 states (light/dark × 5 accents for the base screens; every dialog, menu and popup in light/dark) and stores the
-  screenshot and every element's computed style. `compare.mjs` must report `52 identical`.
-- `interactions.mjs` forces `:hover`, `:focus-visible` and `:active` on every interactive element of 18 states and
-  records what each changes. Static screenshots cannot see these, and they are where cascade layers bite: a kit rule
-  in a layer loses to every unlayered app rule, whatever the specificity. `compare-interactions.mjs` must report
-  `0 different`.
-- Both are deterministic (two baseline runs compare equal). Give each concurrent run its own `CDP_PORT`, and do not
-  rebuild the kit or edit Zap while they run.
-
-Results: after phase 4 Zap is 60/60 pixel-identical with 0 interaction differences by content (5828 deltas).
-The remaining computed-style and by-position differences are intended DOM changes: `SearchField` no longer renders
-the `<kbd>⌕</kbd>` that Zap always hid; menus render into `<body>`; the confirmation and connection dialogs are
-native `<dialog>`s instead of a `div.overlay`.
-
-| Phase | Scope                                                                               | Status |
-| ----- | ----------------------------------------------------------------------------------- | ------ |
-| 0     | Inventory and visual baseline                                                       | done   |
-| 1     | Tokens, base, theme store, platform                                                 | done   |
-| 2     | Atoms: Button, IconButton, Spinner, Badge, Avatar, SearchField, …                   | done   |
-| 3     | Dialogs, Menu, Tabs, Pagination, ResizeHandle, Fields, EmptyState                   | done   |
-| 4     | Desktop shell: AppShell, TitleBar, StatusBar, Sidebar, WindowControls, UpdateDialog | done   |
-| 5     | Clean up Zap, prepare the package (publishing is a manual step, below)              | done   |
-
-## Publishing
-
-The package is `private` with `"license": "UNLICENSED"` until a licence is chosen, so it cannot be published by
-accident. To release 0.1.0:
-
-1. Add a `LICENSE` file, set `license` in `package.json`, and remove `"private": true`.
-2. `npm publish` (it runs `prepare`: a clean build; `publishConfig.access` is `public` for the `@mnml-tools` scope).
-3. In each app, replace the local link with the release: `npm install @mnml-tools/ui@^0.1.0`. The Vite `dedupe`
-   entries for the kit are then unnecessary (the published package has no copy of React), but harmless.
-
-`npm pack` produces the same package; installed from that tarball, Zap builds to byte-identical CSS and JS.
-
 ## Licence
 
 Not chosen yet.
