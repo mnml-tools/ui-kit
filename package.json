@@ -54,8 +54,8 @@
     "dev": "vite --config playground/vite.config.ts playground --host 127.0.0.1",
     "typecheck": "tsc -p tsconfig.json",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
-    "format": "prettier --write src tests playground scripts docs README.md",
-    "format:check": "prettier --check src tests playground scripts docs README.md",
+    "format": "prettier --write src tests playground docs README.md",
+    "format:check": "prettier --check src tests playground docs README.md",
     "prepare": "npm run clean && npm run build",
     "clean": "rm -rf dist"
   },
