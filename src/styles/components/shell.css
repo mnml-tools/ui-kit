@@ -1,0 +1,186 @@
+@layer mnml.components {
+  .mnml-app {
+    height: 100vh;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .mnml-app[data-framed] {
+    border: 1px solid var(--border);
+  }
+
+  .mnml-titlebar {
+    position: relative;
+    height: 36px;
+    flex-shrink: 0;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--soft);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  /* Room for the macOS traffic lights in an overlay title bar. */
+  .mnml-titlebar[data-mac-inset] {
+    padding-left: 86px;
+  }
+
+  .mnml-titlebar[data-tauri-drag-region] > * {
+    pointer-events: none;
+  }
+
+  .mnml-titlebar .mnml-theme-toggle {
+    pointer-events: auto;
+  }
+
+  .mnml-titlebar .mnml-theme-toggle svg {
+    pointer-events: none;
+  }
+
+  .mnml-titlebar-end {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--secondary);
+  }
+
+  .mnml-brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .mnml-brand-icon {
+    display: flex;
+    align-items: center;
+    color: var(--icon);
+  }
+
+  .mnml-brand-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .mnml-brand-note {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    border-left: 1px solid var(--border);
+    padding-left: 9px;
+    margin-left: 4px;
+  }
+
+  @media (max-width: 800px) {
+    .mnml-brand-note {
+      display: none;
+    }
+  }
+
+  .mnml-statusbar {
+    height: 24px;
+    flex-shrink: 0;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    background: var(--soft);
+    color: var(--secondary);
+    font: 10px var(--mono);
+  }
+
+  .mnml-separator {
+    margin: 0 6px;
+    color: var(--faint);
+  }
+
+  .mnml-sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    background: var(--sidebar);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mnml-sidebar[data-resizable] {
+    position: relative;
+  }
+
+  .mnml-sidebar .mnml-search {
+    margin: 0 9px 15px;
+    padding: 4px 6px;
+    border: 1px solid var(--border);
+    background: var(--background);
+  }
+
+  .mnml-sidebar .mnml-search input {
+    width: 100%;
+    min-width: 0;
+    font-size: 11px;
+  }
+
+  .mnml-sidebar-label {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 12px 6px;
+    color: var(--muted);
+    font-size: 10px;
+  }
+
+  .mnml-sidebar-nav {
+    flex: 1;
+    overflow: auto;
+    padding: 0;
+  }
+
+  .mnml-sidebar-nav button {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0 12px;
+    min-height: 27px;
+    border: 0;
+    border-left: 2px solid transparent;
+    background: transparent;
+    color: var(--secondary);
+    font-size: 11px;
+  }
+
+  .mnml-sidebar-nav button[data-active] {
+    border-left-color: var(--focus);
+    color: var(--text);
+    background: var(--selected);
+  }
+
+  .mnml-sidebar-nav button span {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+
+  .mnml-sidebar-nav button span.mnml-dirty-dot {
+    flex: 0 0 5px;
+  }
+
+  .mnml-sidebar-nav small {
+    font-size: 9px;
+  }
+
+  .mnml-sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--muted);
+  }
+}

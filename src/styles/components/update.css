@@ -1,0 +1,66 @@
+@layer mnml.components {
+  .mnml-update-dialog p {
+    padding: 4px 16px;
+  }
+
+  .mnml-update-actions {
+    align-items: center;
+  }
+
+  .mnml-update-release-notes {
+    margin-right: auto;
+    color: var(--secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .mnml-update-release-notes:hover {
+    color: var(--text);
+  }
+
+  .mnml-update-release-notes:focus-visible {
+    outline: 1px solid var(--secondary);
+    outline-offset: 3px;
+  }
+
+  .mnml-update-progress {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 16px 12px;
+  }
+
+  .mnml-update-progress progress {
+    appearance: none !important;
+    flex: 1;
+    min-width: 0;
+    height: 8px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0px;
+    background: var(--border);
+    accent-color: var(--accent);
+  }
+
+  .mnml-update-progress progress::-webkit-progress-bar {
+    background: var(--border);
+    border-radius: 0px;
+  }
+
+  .mnml-update-progress progress::-webkit-progress-value {
+    background: var(--accent);
+    border-radius: 0;
+    transition: width 150ms ease;
+  }
+
+  .mnml-update-progress progress::-moz-progress-bar {
+    background: var(--accent);
+    border-radius: 0px;
+  }
+
+  .mnml-update-progress span {
+    color: var(--secondary);
+    font: 11px var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+}

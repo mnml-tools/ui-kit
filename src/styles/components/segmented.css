@@ -1,0 +1,30 @@
+@layer mnml.components {
+  .mnml-segmented {
+    display: flex;
+    border: 1px solid var(--border);
+  }
+
+  .mnml-segmented button {
+    flex: 1;
+    min-width: 0;
+    padding: 5px 4px;
+    border: 0;
+    background: transparent;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .mnml-segmented button + button {
+    border-left: 1px solid var(--border);
+  }
+
+  .mnml-segmented button:hover {
+    background: var(--hover);
+  }
+
+  .mnml-segmented button[aria-selected='true'],
+  .mnml-segmented button[aria-pressed='true'] {
+    background: var(--background);
+    color: var(--text);
+  }
+}

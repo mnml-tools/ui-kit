@@ -1,0 +1,26 @@
+@layer mnml.components {
+  .mnml-empty-state {
+    margin: auto;
+    text-align: center;
+    color: var(--faint);
+    padding: 20px;
+  }
+
+  .mnml-empty-state > svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mnml-empty-state h2 {
+    margin: 14px 0 0;
+    color: var(--secondary);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .mnml-empty-state p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+}

@@ -1,0 +1,68 @@
+@layer mnml.components {
+  .mnml-theme-toggle {
+    padding: 4px;
+    min-height: 24px;
+    width: 26px;
+    margin-right: 5px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--secondary);
+  }
+
+  .mnml-theme-toggle:hover {
+    background: var(--hover);
+    border-color: var(--border);
+  }
+
+  .mnml-appearance-dialog {
+    width: 330px;
+  }
+
+  .mnml-appearance-options {
+    display: grid;
+    gap: 9px;
+    padding: 14px 16px 0;
+  }
+
+  .mnml-appearance-modes {
+    margin-bottom: 6px;
+  }
+
+  .mnml-appearance-modes button,
+  .mnml-appearance-accents button {
+    text-transform: capitalize;
+  }
+
+  .mnml-appearance-accents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .mnml-appearance-accents button {
+    flex: 1 0 44px;
+    flex-direction: column;
+    gap: 5px;
+    padding: 4px;
+    border-color: transparent;
+    color: var(--secondary);
+    font-size: 10px;
+  }
+
+  .mnml-appearance-accents button[aria-pressed='true'] {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .mnml-appearance-swatch {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .mnml-appearance-accents button[aria-pressed='true'] .mnml-appearance-swatch {
+    outline: 2px solid var(--text);
+    outline-offset: 1px;
+  }
+}

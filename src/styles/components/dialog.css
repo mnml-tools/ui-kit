@@ -1,0 +1,81 @@
+@layer mnml.components {
+  .mnml-dialog {
+    width: 490px;
+    max-width: calc(100% - 40px);
+    max-height: 95vh;
+    overflow: auto;
+    padding: 0;
+    border: 1px solid var(--faint);
+    background: var(--background);
+    color: var(--text);
+    box-shadow: 0 6px 24px var(--shadow);
+  }
+
+  .mnml-dialog::backdrop {
+    background: var(--overlay);
+  }
+
+  .mnml-dialog-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    background: var(--soft);
+  }
+
+  .mnml-dialog-heading h2 {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .mnml-dialog-close,
+  .mnml-dialog-close:hover {
+    border: 0;
+    background: transparent;
+    min-height: 20px;
+    padding: 0;
+  }
+
+  .mnml-dialog-close svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .mnml-dialog p {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .mnml-dialog form {
+    padding: 16px;
+  }
+
+  .mnml-dialog .mnml-message[data-tone='error'] {
+    margin: 12px 0 0;
+  }
+
+  .mnml-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+    padding: 12px 16px;
+  }
+
+  /* A form already pads its content. */
+  .mnml-dialog form .mnml-dialog-actions {
+    padding: 0;
+  }
+
+  /* ConfirmDialog and ErrorDialog: a short message and its buttons. */
+  .mnml-message-dialog {
+    width: 360px;
+  }
+
+  .mnml-message-dialog p {
+    padding: 4px 16px;
+    color: var(--secondary);
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,46 @@
+@layer mnml.components {
+  .mnml-resize-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -3px;
+    width: 7px;
+    z-index: 3;
+    cursor: col-resize;
+    touch-action: none;
+    outline: none;
+  }
+
+  .mnml-resize-handle::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 3px;
+    width: 1px;
+    background: transparent;
+  }
+
+  .mnml-resize-handle:hover::after,
+  .mnml-resize-handle:focus-visible::after,
+  .mnml-resize-handle[data-dragging]::after {
+    width: 2px;
+    background: var(--focus);
+  }
+
+  .mnml-resize-handle:focus-visible {
+    outline: none;
+  }
+
+  .mnml-resize-handle[data-edge='left'] {
+    right: auto;
+    left: -3px;
+  }
+
+  /* Set on <html> while dragging, so the cursor and text selection hold across the whole window. */
+  .mnml-resizing,
+  .mnml-resizing * {
+    cursor: col-resize !important;
+    user-select: none !important;
+  }
+}

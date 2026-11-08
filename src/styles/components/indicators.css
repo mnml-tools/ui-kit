@@ -1,0 +1,53 @@
+@layer mnml.components {
+  .mnml-spin {
+    animation: mnml-spin 1s linear infinite;
+  }
+
+  @keyframes mnml-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .mnml-status-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--indicator);
+  }
+
+  .mnml-dirty-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--edited-accent);
+    flex: 0 0 5px;
+  }
+
+  .mnml-badge {
+    font: 10px var(--mono);
+    color: var(--secondary);
+    padding: 3px 6px;
+    border: 1px solid var(--border);
+  }
+
+  .mnml-avatar {
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    background: color-mix(in srgb, var(--avatar-color) 32%, var(--background));
+    color: color-mix(in srgb, var(--avatar-color) 65%, var(--text));
+    border: 1px solid color-mix(in srgb, var(--avatar-color) 55%, var(--background));
+    font: 600 14px var(--mono);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .mnml-avatar[data-size='small'] {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,27 @@
+@layer mnml.components {
+  .mnml-window-controls {
+    display: flex;
+    align-items: stretch;
+    align-self: stretch;
+    gap: 1px;
+    margin-left: 4px;
+    pointer-events: auto;
+  }
+
+  .mnml-window-controls button {
+    width: 29px;
+    min-height: 26px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .mnml-window-controls button:hover {
+    background: var(--hover);
+  }
+
+  .mnml-window-controls .mnml-window-close:hover {
+    background: var(--danger);
+    color: var(--on-danger);
+  }
+}

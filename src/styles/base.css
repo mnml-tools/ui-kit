@@ -1,0 +1,73 @@
+/* Optional document base: system font at 12px, square controls and the shared focus ring. Needs tokens.css. */
+@layer mnml.tokens, mnml.base, mnml.components;
+
+@layer mnml.base {
+  :root {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 12px;
+    font-synthesis: none;
+    color: var(--text);
+    background: var(--background);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+    color: inherit;
+    border-radius: 0;
+  }
+
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid var(--border);
+    background: var(--background);
+    padding: 5px 9px;
+    min-height: 26px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  button:hover {
+    background: var(--hover);
+  }
+
+  button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  [role='button']:focus-visible {
+    outline: 1px solid var(--secondary);
+    outline-offset: -1px;
+  }
+
+  :root[data-accent] :focus-visible {
+    outline-color: var(--focus);
+  }
+
+  ::selection {
+    background: var(--selected);
+    color: var(--text);
+  }
+}

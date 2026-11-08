@@ -1,0 +1,49 @@
+@layer mnml.components {
+  .mnml-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    background: var(--background);
+    padding: 5px 9px;
+    min-height: 26px;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .mnml-button:hover {
+    background: var(--hover);
+  }
+
+  .mnml-button:disabled {
+    opacity: 0.45;
+    cursor: default;
+  }
+
+  .mnml-button:focus-visible {
+    outline: 1px solid var(--focus-ring);
+    outline-offset: -1px;
+  }
+
+  .mnml-button[data-variant='primary'] {
+    background: var(--hover);
+    border-color: var(--control-border);
+    color: var(--text);
+  }
+
+  .mnml-button[data-variant='primary']:hover {
+    background: var(--hover-strong);
+  }
+
+  .mnml-icon-button {
+    min-height: 24px;
+    padding: 4px;
+    border: 0;
+    background: transparent;
+    color: var(--icon);
+  }
+}
