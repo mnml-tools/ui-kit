@@ -1,0 +1,679 @@
+/* The docs site's own styles. Unlayered, so they sit above the kit, as an app's CSS would. */
+
+:root {
+  --docs-code-bg: var(--soft);
+  --tok-keyword: color-mix(in srgb, var(--accent, var(--secondary)) 75%, var(--text));
+  --tok-string: var(--edited-text);
+  --tok-comment: var(--faint);
+  --tok-tag: var(--notice-text);
+  --tok-attr: var(--secondary);
+  --tok-number: var(--edited-accent);
+  --tok-type: var(--notice-text);
+}
+
+.docs {
+  min-height: 0;
+}
+
+/* Title bar: the docs are a web page, so its children take clicks. */
+.docs .mnml-titlebar > *,
+.docs .mnml-titlebar-end > * {
+  pointer-events: auto;
+}
+
+.docs-brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.docs-menu {
+  display: none;
+}
+
+.docs-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 6px;
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.docs-github:hover {
+  color: var(--text);
+  background: var(--hover);
+}
+
+.docs-body {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Navigation */
+
+.docs .mnml-sidebar {
+  padding-top: 12px;
+}
+
+.docs-nav-group + .docs-nav-group {
+  margin-top: 14px;
+}
+
+.docs-nav-group .mnml-sidebar-label {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.docs .mnml-sidebar-nav {
+  padding-bottom: 12px;
+}
+
+.docs .mnml-sidebar-nav mark {
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--focus);
+}
+
+.docs .mnml-sidebar-nav small {
+  font: 9px var(--mono);
+  color: var(--muted);
+}
+
+.docs-nav-empty {
+  margin: 0 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.docs .mnml-sidebar-footer {
+  justify-content: space-between;
+}
+
+.docs .mnml-sidebar-footer code {
+  font: 10px var(--mono);
+}
+
+.docs-scrim {
+  display: none;
+}
+
+/* Page */
+
+.docs-main {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 880px) 200px;
+  justify-content: center;
+  gap: 40px;
+  padding: 32px 40px 48px;
+  scroll-padding-top: 16px;
+}
+
+.docs-page {
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.docs-page-header {
+  margin-bottom: 28px;
+}
+
+.docs-eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Prose. In the base layer, and kept out of previews, so the kit's components keep their own look there — the
+   same setup the CSS page recommends to apps. */
+@layer mnml.base {
+  .docs-page h1:not(.docs-preview *) {
+    margin: 2px 0 6px;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .docs-page h2:not(.docs-preview *) {
+    margin: 0 0 10px;
+    padding-top: 8px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .docs-page h3:not(.docs-preview *) {
+    margin: 0 0 6px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .docs-page p:not(.docs-preview *) {
+    margin: 0 0 12px;
+  }
+
+  .docs-page ul:not(.docs-preview *) {
+    margin: 0 0 12px;
+    padding-left: 20px;
+  }
+
+  .docs-page li + li:not(.docs-preview *) {
+    margin-top: 4px;
+  }
+
+  .docs-page a:not(.docs-preview *) {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--faint);
+    text-underline-offset: 2px;
+  }
+
+  .docs-page a:hover:not(.docs-preview *) {
+    text-decoration-color: var(--focus);
+  }
+
+  .docs-page :not(pre) > code:not(.docs-preview *) {
+    padding: 1px 4px;
+    font: 0.88em var(--mono);
+    background: var(--soft);
+    border: 1px solid var(--border);
+    overflow-wrap: anywhere;
+  }
+
+  .docs-page kbd:not(.docs-preview *) {
+    padding: 1px 5px;
+    font: 11px var(--mono);
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    background: var(--soft);
+  }
+}
+
+.docs-lede {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: var(--secondary);
+}
+
+.docs-section {
+  margin: 0 0 32px;
+}
+
+.docs-note {
+  margin: 0 0 20px;
+  padding: 10px 14px;
+  border-left: 2px solid var(--focus);
+  background: var(--soft);
+  color: var(--secondary);
+}
+
+.docs-note[data-tone='warning'] {
+  border-left-color: var(--notice-border);
+  background: var(--notice-bg);
+  color: var(--notice-text);
+}
+
+.docs-note > :last-child {
+  margin-bottom: 0;
+}
+
+/* Code */
+
+.docs-code {
+  position: relative;
+  margin: 0 0 16px;
+  background: var(--docs-code-bg);
+  border: 1px solid var(--border);
+}
+
+.docs-code pre {
+  margin: 0;
+  padding: 12px 40px 12px 14px;
+  overflow: auto;
+  max-height: 520px;
+  font: 11.5px/1.65 var(--mono);
+  tab-size: 2;
+}
+
+.docs-code > .docs-copy {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: var(--docs-code-bg);
+}
+
+.docs-code > .docs-copy:hover {
+  background: var(--hover);
+}
+
+.tok-keyword {
+  color: var(--tok-keyword);
+}
+
+.tok-string {
+  color: var(--tok-string);
+}
+
+.tok-comment {
+  color: var(--tok-comment);
+  font-style: italic;
+}
+
+.tok-tag,
+.tok-type {
+  color: var(--tok-tag);
+}
+
+.tok-attr,
+.tok-prop {
+  color: var(--tok-attr);
+}
+
+.tok-number {
+  color: var(--tok-number);
+}
+
+/* Examples */
+
+.docs-example-block {
+  margin: 0 0 32px;
+}
+
+.docs-example-block > h3 {
+  font-size: 14px;
+  padding-top: 4px;
+}
+
+.docs-example-intro {
+  margin: 0 0 10px;
+  color: var(--secondary);
+}
+
+.docs-example {
+  margin: 0;
+  border: 1px solid var(--border);
+}
+
+.docs-preview {
+  padding: 28px 24px;
+  background: var(--background);
+  /* Kit components are drawn for 12px text; the page prose is larger. */
+  font-size: 12px;
+  line-height: normal;
+}
+
+.docs-preview[data-stage='row'] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.docs-preview[data-stage='center'] {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+}
+
+.docs-preview[data-flush] {
+  padding: 0;
+}
+
+/* An AppShell fills the window; in a preview it gets a window-sized box instead. */
+.docs-preview .mnml-app {
+  height: 440px;
+  min-height: 0;
+}
+
+.docs-example-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 4px 3px 6px;
+  border-top: 1px solid var(--border);
+  background: var(--soft);
+  font-size: 11px;
+}
+
+.docs-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 2px 6px;
+  min-height: 22px;
+  border: 0;
+  background: transparent;
+  color: var(--secondary);
+  font-size: 11px;
+}
+
+.docs-toggle:hover {
+  color: var(--text);
+}
+
+.docs-example-file {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 10px var(--mono);
+  color: var(--faint);
+  text-align: right;
+}
+
+.docs-example .docs-code {
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* API tables */
+
+.docs-api {
+  margin: 0 0 28px;
+}
+
+.docs-api h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.docs-page .docs-api h3 > code {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 13px;
+}
+
+.docs-page .docs-source {
+  margin-left: auto;
+  font: 10px var(--mono);
+  color: var(--faint);
+}
+
+.docs-table-scroll {
+  overflow-x: auto;
+  margin: 0 0 16px;
+  border: 1px solid var(--border);
+}
+
+.docs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.docs-table th,
+.docs-table td {
+  padding: 7px 10px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.docs-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.docs-table th {
+  background: var(--soft);
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.docs-table td:first-child {
+  white-space: nowrap;
+}
+
+.docs-page .docs-table code {
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+.docs-type {
+  color: var(--tok-tag);
+}
+
+.docs-required {
+  margin-left: 6px;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--notice-text);
+}
+
+.docs-none {
+  color: var(--faint);
+}
+
+.docs-native {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.docs-class-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+}
+
+/* Tokens */
+
+.docs-tokens td {
+  vertical-align: middle;
+}
+
+.docs-tokens th:first-child,
+.docs-tokens td:first-child {
+  width: 1%;
+}
+
+.docs-tokens [data-current] {
+  background: color-mix(in srgb, var(--selected) 50%, transparent);
+}
+
+.docs-swatch {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--border);
+}
+
+.docs-font-sample {
+  font: 14px var(--mono);
+}
+
+.docs-token-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.docs-token-name .docs-copy {
+  opacity: 0;
+}
+
+.docs-tokens tr:hover .docs-copy,
+.docs-token-name .docs-copy:focus-visible {
+  opacity: 1;
+}
+
+.docs-accents {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.docs-accent {
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+}
+
+.docs-accent span {
+  height: 36px;
+  margin-bottom: 6px;
+  background: var(--accent);
+}
+
+.docs-page .docs-accent code {
+  justify-self: start;
+}
+
+/* Pager and table of contents */
+
+.docs-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.docs-page .docs-pager a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+}
+
+.docs-page .docs-pager a:hover {
+  background: var(--hover);
+}
+
+.docs-pager a[data-next] {
+  text-align: right;
+}
+
+.docs-pager span {
+  display: grid;
+}
+
+.docs-pager small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.docs-toc {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  display: grid;
+  justify-items: start;
+  gap: 1px;
+  padding-top: 64px;
+  font-size: 11px;
+}
+
+.docs-toc-title {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.docs-toc button {
+  min-height: 0;
+  padding: 3px 0 3px 10px;
+  border: 0;
+  border-left: 1px solid var(--border);
+  background: none;
+  color: var(--secondary);
+  text-align: left;
+  white-space: normal;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.docs-toc button[data-level='3'] {
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.docs-toc button:hover {
+  color: var(--text);
+  border-left-color: var(--focus);
+  background: none;
+}
+
+/* Narrower windows: drop the table of contents, then turn the navigation into a drawer. */
+
+@media (max-width: 1240px) {
+  .docs-main {
+    grid-template-columns: minmax(0, 880px);
+  }
+
+  .docs-toc {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .docs-menu {
+    display: inline-flex;
+  }
+
+  .docs .mnml-sidebar {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 5;
+    width: min(280px, 85vw) !important;
+    max-width: none !important;
+    transform: translateX(-100%);
+    transition: transform 0.15s ease-out;
+  }
+
+  .docs .mnml-sidebar .mnml-resize-handle {
+    display: none;
+  }
+
+  .docs-body[data-nav-open] .mnml-sidebar {
+    transform: none;
+    box-shadow: 0 6px 24px var(--shadow);
+  }
+
+  .docs-body[data-nav-open] .docs-scrim {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    border: 0;
+    background: var(--overlay);
+  }
+
+  .docs-main {
+    padding: 20px 16px 32px;
+  }
+
+  .docs-preview {
+    padding: 20px 16px;
+  }
+
+  .docs-example-file {
+    display: none;
+  }
+
+  .docs .mnml-statusbar > span:last-child {
+    display: none;
+  }
+}

@@ -1,8 +1,16 @@
 # @mnml-tools/ui
 
 Shared design tokens, base styles and React building blocks for the mnml-tools desktop apps (Tauri 2, TypeScript,
-React 19). Extracted from [Zap](https://github.com/mnml-tools/zap), which stays the visual reference: square
-controls, a 12px system font, warm neutral greys, light and dark modes, and five accent colours.
+React 19).
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/ui-kit-screenshot-dark.png">
+  <source media="(prefers-color-scheme: light)" srcset="docs/ui-kit-screenshot-light.png">
+  <img src="docs/ui-kit-screenshot-light.png" alt="The kit's developer docs on the Button page: navigation, import line, a live preview and its code">
+</picture>
+
+View screenshots in [light mode](docs/ui-kit-screenshot-light.png) or [dark mode](docs/ui-kit-screenshot-dark.png).
+The docs run with `npm run dev`; see [Develop](#develop).
 
 ## Use
 
@@ -88,12 +96,19 @@ Node 22.19+ or 24.
 
 ```sh
 npm install
-npm run dev          # playground at http://127.0.0.1:1440 (tokens, controls, theme switcher)
+npm run dev          # developer docs at http://127.0.0.1:1440 (live examples, code, API tables)
+npm run docs:build   # the docs as a static site in dist-docs/ (hash routes, works from any sub-path)
 npm run build        # dist/: ESM + .d.ts + CSS
 npm test
 npm run typecheck
 npm run format:check
 ```
+
+The docs live in `playground/`. Each example in `playground/examples/` is rendered and shown as its code, so the two
+cannot drift; examples import the kit as `@mnml-tools/ui`, so their code copies into an app as is. API tables and
+signatures are read from `src/` by the TypeScript compiler (`playground/api-plugin.ts`), JSDoc included. To document
+a new export, add an example and a page entry in `playground/app/pages.tsx`; the docs' API index lists exports that
+no page covers yet.
 
 To work on the kit against an app, install it from disk (`npm install ../ui-kit` in the app) and add
 `resolve: { dedupe: ['react', 'react-dom', '@tauri-apps/api'] }` to the app's Vite config, so the linked kit and the

@@ -52,6 +52,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json && rm -rf dist/styles && cp -r src/styles dist/styles",
     "dev": "vite --config playground/vite.config.ts playground --host 127.0.0.1",
+    "docs:build": "vite build --config playground/vite.config.ts playground",
+    "docs:preview": "vite preview --config playground/vite.config.ts playground --host 127.0.0.1",
     "typecheck": "tsc -p tsconfig.json",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "format": "prettier --write src tests playground docs README.md",

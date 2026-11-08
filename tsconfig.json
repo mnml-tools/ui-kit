@@ -12,7 +12,13 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@mnml-tools/ui": ["./src/index.ts"],
+      "@mnml-tools/ui/tauri": ["./src/tauri/index.ts"],
+      "~/theme": ["./playground/app/theme.ts"]
+    }
   },
-  "include": ["src", "playground"]
+  "include": ["src", "playground"],
+  "exclude": ["playground/vite.config.ts", "playground/api-plugin.ts"]
 }

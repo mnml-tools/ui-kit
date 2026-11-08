@@ -1,8 +1,11 @@
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Playground } from './Playground'
-import '../src/styles/tokens.css'
-import '../src/styles/base.css'
-import '../src/styles/components.css'
-import './playground.css'
+import { Docs } from './app/Docs.tsx'
+import '../src/styles/styles.css'
+import './docs.css'
 
-createRoot(document.getElementById('root')!).render(<Playground />)
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <Docs />
+  </StrictMode>
+)
